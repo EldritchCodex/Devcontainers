@@ -7,7 +7,7 @@ Shared Linux graphics development image for Nodens, Nyar, and Template-NodensApp
 Shared image:
 
 ```text
-ghcr.io/eldritchcodex/linux-graphics-dev:main
+ghcr.io/eldritchcodex/arch-dev:main
 ```
 
 The image owns the full toolchain. GPU devices and NVIDIA runtime defaults stay
@@ -33,7 +33,7 @@ or host GPU detection runs.
 Generic Intel/AMD configuration uses:
 
 ```json
-"image": "ghcr.io/eldritchcodex/linux-graphics-dev:main",
+"image": "ghcr.io/eldritchcodex/arch-dev:main",
 "runArgs": [
     "--device=/dev/dri",
     "--group-add=video",
@@ -88,7 +88,7 @@ Build the shared image:
 
 ```sh
 docker build --pull \
-    -t ghcr.io/eldritchcodex/linux-graphics-dev:main \
+    -t ghcr.io/eldritchcodex/arch-dev:main \
     linux-graphics
 ```
 

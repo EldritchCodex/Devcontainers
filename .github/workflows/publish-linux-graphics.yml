@@ -1,4 +1,4 @@
-name: Publish Linux Graphics Development Image
+name: Publish Arch Development Image
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     tags:
       - "v*"
     paths:
-      - "linux-graphics/**"
-      - ".github/workflows/publish-linux-graphics.yml"
+      - "arch-dev/**"
+      - ".github/workflows/publish-arch-dev.yml"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,7 @@ permissions:
   packages: write
 
 concurrency:
-  group: publish-linux-graphics-${{ github.ref }}
+  group: publish-arch-dev-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/eldritchcodex/linux-graphics-dev
+          images: ghcr.io/eldritchcodex/arch-dev
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
@@ -53,12 +53,12 @@ jobs:
       - name: Build and publish image
         uses: docker/build-push-action@v6
         with:
-          context: linux-graphics
-          file: linux-graphics/Dockerfile
+          context: arch-dev
+          file: arch-dev/Dockerfile
           platforms: linux/amd64
           pull: true
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
-          cache-from: type=gha,scope=linux-graphics
-          cache-to: type=gha,scope=linux-graphics,mode=max
+          cache-from: type=gha,scope=arch-dev
+          cache-to: type=gha,scope=arch-dev,mode=max
