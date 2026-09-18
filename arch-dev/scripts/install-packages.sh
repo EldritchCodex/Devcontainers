@@ -26,19 +26,19 @@ packages=(
     ninja
 
     # Source control and download support:
-    # Git is required for project work and FetchContent dependencies; curl is
-    # used by install-git-prompt.sh to fetch the pinned Git prompt helper;
-    # ca-certificates enables TLS verification for HTTPS downloads.
+    # Git is required for project work and FetchContent dependencies; OpenSSH
+    # provides the SSH transport for GitHub remotes. Curl is used by the image
+    # build scripts to fetch pinned GitHub releases, and ca-certificates enables
+    # TLS verification for those HTTPS downloads.
     git
+    openssh
     curl
     ca-certificates
 
-    # General build and archive utilities:
-    # pkgconf assists CMake dependency discovery; unzip and file support
-    # common source/tool archives and inspection tasks.
+    # Build metadata support:
+    # pkgconf assists CMake dependency discovery while configuring GLFW and
+    # other desktop dependencies.
     pkgconf
-    unzip
-    file
 
     # OpenGL and GLFW:
     # Mesa and libglvnd provide Linux OpenGL userspace support. GLFW is a
@@ -67,9 +67,6 @@ packages=(
     wayland-protocols
     libxkbcommon
 
-    # CMake modules used by some desktop-library builds, including the Arch
-    # GLFW package's build metadata.
-    extra-cmake-modules
 
     # Vulkan development and diagnostics:
     # Headers and the loader are needed to compile/link Vulkan applications;
